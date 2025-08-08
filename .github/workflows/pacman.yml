@@ -1,11 +1,9 @@
 name: Generate pacman animation
 
 on:
-  schedule: # execute every 12 hours
+  schedule:
     - cron: "* */12 * * *"
-
   workflow_dispatch:
-
   push:
     branches:
       - main
@@ -25,6 +23,8 @@ jobs:
 
       - name: list current files
         run: ls -la
+
+      # This step is no longer needed because the 'abozanona' action already puts the files in a 'dist' folder.
 
       - name: push pacman-contribution-graph.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
