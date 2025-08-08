@@ -27,7 +27,7 @@ jobs:
       - name: prepare output folder
         run: |
           mkdir -p dist
-          mv pacman-contribution-graph.svg dist/
+          mv *.svg dist/
 
       - name: push pacman to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
