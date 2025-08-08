@@ -23,7 +23,3 @@
 ## 🐍 Snake On Contributions
 
 ![github-snake](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/snake.svg)
-
-## 👾 Pacman On Contributions
-
-![pacman](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/pacman.svg)
