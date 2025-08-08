@@ -24,7 +24,7 @@ jobs:
 
       - name: prepare output folder
         run: |
-          mkdir dist
+          mkdir -p dist
           mv snake.svg dist/
 
       - name: push snake.svg to the output branch

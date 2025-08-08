@@ -23,7 +23,7 @@ jobs:
 
       - name: prepare output folder
         run: |
-          mkdir dist
+          mkdir -p dist
           mv pacman-contribution-graph.svg dist/
 
       - name: push pacman to the output branch
