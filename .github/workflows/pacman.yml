@@ -17,9 +17,13 @@ jobs:
 
     steps:
       - name: generate pacman graph SVG
-        uses: abozanona/pacman-contribution-graph@main
+        uses: lowlighter/metrics@latest
         with:
-          github_user_name: ${{ github.repository_owner }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: ${{ github.repository_owner }}
+          config_pacman: true
+          config_output: svg
+          filename: pacman.svg
 
       - name: list files after generation
         run: ls -la
@@ -27,7 +31,7 @@ jobs:
       - name: prepare output folder
         run: |
           mkdir -p dist
-          mv *.svg dist/ || echo "No SVG file found, skipping move"
+          mv pacman.svg dist/ || echo "No SVG file found, skipping move"
 
       - name: push pacman to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
