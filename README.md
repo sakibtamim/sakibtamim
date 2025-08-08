@@ -28,4 +28,4 @@
 
 ## 👾 Pacman On Contributions
 
-![pacman](https://raw.githubusercontent.com/<username>/<repository>/output/pacman.svg)
+![pacman](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/pacman.svg)
