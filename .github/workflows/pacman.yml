@@ -16,9 +16,6 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: generate pacman graph SVG
         uses: lowlighter/metrics@latest
         with:
@@ -27,16 +24,10 @@ jobs:
           config_pacman: true
           filename: pacman.svg
 
-      - name: Prepare to push to output branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b output
-          git add pacman.svg
-          git commit -m "Update Pacman SVG" || true
-          git push --force origin output
-
-      - name: Verify files in output branch (optional)
-        run: |
-          git checkout output
-          ls -la
+      - name: push pacman to the output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
