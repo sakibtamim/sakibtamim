@@ -1,3 +1,18 @@
+<h1 align="center">Hi 👋, I'm Nazmus Sakib Tamim</h1>
+<h3 align="center">A passionate frontend developer from Bangladesh</h3>
+
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=sakibtamim&label=Profile%20views&color=0e75b6&style=plastic" alt="sakibtamim" /> </p>
+
+## 🏆 GitHub Trophies
+![](https://github-profile-trophy.vercel.app/?username=sakibtamim&theme=redical&no-frame=false&no-bg=false&margin-w=4)
+
+
+- 🌱 I’m currently learning **Frontend Development with React**
+
+- 💬 Ask me about **Html, Css, Js, React**
+
+- 📫 How to reach me **sakib.tamim@gmail.com**
+
 ## 🌐 Socials:
 
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/sakib.tamim.7) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/sakibtamim) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:sakib.tamim@gmail.com)
