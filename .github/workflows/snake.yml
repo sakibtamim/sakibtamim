@@ -28,11 +28,6 @@ jobs:
       - name: prepare output folder
         run: |
           mkdir -p dist
-          mv pacman-contribution-graph.svg dist/
-
-      - name: prepare output folder
-        run: |
-          mkdir -p dist
           mv snake.svg dist/
 
       - name: push snake.svg to the output branch
