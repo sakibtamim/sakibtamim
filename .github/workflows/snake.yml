@@ -21,10 +21,9 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: snake.svg?palette=github-dark
-          
+
       - name: list current files
         run: ls -la
-    
 
       - name: prepare output folder
         run: |
