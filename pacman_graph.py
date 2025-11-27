@@ -65,54 +65,59 @@ WIDTH = len(weeks) * (CELL_SIZE + CELL_GAP) + CELL_GAP
 HEIGHT = 7 * (CELL_SIZE + CELL_GAP) + CELL_GAP
 
 svg_content = f'<svg width="{WIDTH}" height="{HEIGHT}" xmlns="http://www.w3.org/2000/svg">\n'
+svg_content += f'<style>\n'
+svg_content += f'.grid-rect {{ fill: #0d1117; }}\n'
+svg_content += f'</style>\n'
 svg_content += f'<rect width="{WIDTH}" height="{HEIGHT}" fill="#0d1117" />\n' # Background
 
 # Draw Grid
 for i, week in enumerate(weeks):
     for day in week['contributionDays']:
         date_obj = datetime.datetime.strptime(day['date'], '%Y-%m-%d')
-        weekday = date_obj.weekday() # 0=Monday, 6=Sunday. GitHub calendar usually starts Sunday=0 or Monday?
-        # GitHub API returns days in order. Usually 0-6 index in the list matches the day of week in the column.
-        # But we need to be careful. contributionDays list might be partial for first/last week.
-        # Actually, the list index corresponds to the row (0=Sunday, 1=Monday... usually).
-        # Let's assume the list order is correct for the column.
-        
-        # Adjust weekday to match GitHub's display (Sunday at top? or Monday?)
-        # Standard GitHub graph: Sunday is top (row 0), Saturday is bottom (row 6).
-        # We'll just use the index in the list.
-        
-        # Find the row index based on the date's weekday is risky if the list is partial.
-        # But weeks usually contain 7 days except first/last.
-        # Let's trust the day's weekday.
-        # Python weekday(): Mon=0, Sun=6.
-        # GitHub graph: Sun=0, Sat=6.
-        day_index = (date_obj.weekday() + 1) % 7 
+        # GitHub graph: Sun=0 (top), Sat=6 (bottom)
+        # datetime.weekday(): Mon=0, Sun=6
+        # We need to convert to 0-6 where 0 is Sunday.
+        # (weekday + 1) % 7 gives Sun=0, Mon=1... Sat=6
+        day_index = (date_obj.weekday() + 1) % 7
         
         x = i * (CELL_SIZE + CELL_GAP) + CELL_GAP
         y = day_index * (CELL_SIZE + CELL_GAP) + CELL_GAP
         
         color = day['color']
-        # Map GitHub colors to Pacman theme if needed, or keep original.
-        # Let's keep original for now, or make them "dots".
-        
-        # Simple logic: if color is not empty/bg, it's a dot.
-        if contribution_count := day['contributionCount']:
-             # Draw dot
+        if day['contributionCount'] > 0:
+             # Draw dot (food)
              cx = x + CELL_SIZE / 2
              cy = y + CELL_SIZE / 2
              r = 2
-             svg_content += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#b1b8c0" />\n'
+             # Use a class or ID to potentially animate eating later?
+             svg_content += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{color}" opacity="0.8" />\n'
         else:
-             # Empty cell, maybe draw faint box?
+             # Empty cell
              pass
 
-# Add Pacman
-# Just placing him in the middle for now
-pacman_x = WIDTH / 2
-pacman_y = HEIGHT / 2
-svg_content += f'<circle cx="{pacman_x}" cy="{pacman_y}" r="{CELL_SIZE}" fill="yellow" />\n'
-# Add mouth (simple wedge)
-svg_content += f'<path d="M {pacman_x} {pacman_y} L {pacman_x + CELL_SIZE} {pacman_y - CELL_SIZE/2} L {pacman_x + CELL_SIZE} {pacman_y + CELL_SIZE/2} Z" fill="#0d1117" />\n'
+# Add Animated Pacman
+# We will animate him moving across the middle row
+pacman_r = CELL_SIZE / 1.5
+y_pos = HEIGHT / 2
+
+# Group for Pacman
+svg_content += f'<g>\n'
+# Movement animation
+svg_content += f'<animateTransform attributeName="transform" type="translate" from="-{CELL_SIZE} 0" to="{WIDTH} 0" dur="10s" repeatCount="indefinite" />\n'
+
+# Pacman Body (Yellow Circle with Mouth)
+# We use a path for the mouth opening/closing
+# Simple open mouth
+svg_content += f'<path fill="yellow" stroke="none">\n'
+svg_content += f'  <animate attributeName="d" dur="0.5s" repeatCount="indefinite" values="\n'
+# Closed
+svg_content += f'    M {0} {y_pos} L {0+pacman_r} {y_pos-pacman_r} A {pacman_r} {pacman_r} 0 1 1 {0+pacman_r} {y_pos+pacman_r} Z;\n'
+# Open
+svg_content += f'    M {0} {y_pos} L {0+pacman_r} {y_pos-pacman_r/2} A {pacman_r} {pacman_r} 0 1 1 {0+pacman_r} {y_pos+pacman_r/2} Z\n'
+svg_content += f'  " />\n'
+svg_content += f'</path>\n'
+
+svg_content += f'</g>\n'
 
 svg_content += '</svg>'
 
