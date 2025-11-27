@@ -41,4 +41,4 @@
 
 ## 🎮 Pacman On Contributions
 
-![github-pacman](https://github.com/sakibtamim/sakibtamim/blob/output/github-contribution-grid-snake-dark.svg)
+![github-pacman](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/pacman-contribution-graph.svg)
