@@ -380,7 +380,7 @@
         <circle cx="0" cy="88.5" r="9.5" fill="#e8c125">
             <animate attributeName="fill-opacity" values="1;0.5;1" dur="0.5s" repeatCount="indefinite" />
         </circle>
-        <!-- Mouth animation (simplified wedge) -->
+        <!-- Mouth animation -->
         <path d="M0,88.5 L10,83.5 L10,93.5 Z" fill="#0d1117" transform="translate(0,0)">
              <animateTransform attributeName="transform" type="rotate" values="0 0 88.5; 30 0 88.5; 0 0 88.5" dur="0.2s" repeatCount="indefinite" />
         </path>
