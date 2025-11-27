@@ -122,8 +122,10 @@ svg_content += f'</g>\n'
 svg_content += '</svg>'
 
 
+# Ensure dist exists
+os.makedirs('dist', exist_ok=True)
 
-with open(OUTPUT_FILE, 'w') as f:
+with open(f'dist/{OUTPUT_FILE}', 'w') as f:
     f.write(svg_content)
 
-print(f"Generated {OUTPUT_FILE}")
+print(f"Generated dist/{OUTPUT_FILE}")
