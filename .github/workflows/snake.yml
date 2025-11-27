@@ -27,5 +27,6 @@ jobs:
         with:
           target_branch: output
           build_dir: . # Change this line to use the current directory
+          keep_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
