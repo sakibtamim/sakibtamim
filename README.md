@@ -4,8 +4,8 @@
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=sakibtamim&label=Profile%20views&color=0e75b6&style=plastic" alt="sakibtamim" /> </p>
 
 ## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=sakibtamim&theme=redical&no-frame=false&no-bg=false&margin-w=4)
 
+![](https://github-profile-trophy.vercel.app/?username=sakibtamim&theme=redical&no-frame=false&no-bg=false&margin-w=4)
 
 - 🌱 I’m currently learning **Frontend Development with React**
 
@@ -38,3 +38,7 @@
 ## 🐍 Snake On Contributions
 
 ![github-snake](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/snake.svg)
+
+## 🎮 Pacman On Contributions
+
+![github-pacman](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/pacman-contribution-graph.svg)
