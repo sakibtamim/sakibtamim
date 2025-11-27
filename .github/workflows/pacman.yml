@@ -30,31 +30,49 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+name: Generate pacman animation
+
+on:
+  schedule: # execute every 12 hours
+    - cron: "* */12 * * *"
+
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+      - feat/implement-pacman
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install requests
+
       - name: Generate Pacman Graph
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER_NAME: ${{ github.repository_owner }}
         run: python pacman_graph.py
 
-      - name: Push to output branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Clone the output branch
-          git clone --branch output --single-branch https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git output-branch
-
-          # Copy the generated file to the output branch directory
-          cp pacman-contribution-graph.svg output-branch/
-
-          # Commit and push
-          cd output-branch
-          git add pacman-contribution-graph.svg
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update pacman contribution graph"
-            git push origin output
-          fi
+      - name: push pacman-contribution-graph.svg to the output branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: output
+          publish_dir: .
+          keep_files: true
+          exclude_assets: '.github,**/*.py,**/*.yml,**/*.md,.git*'
