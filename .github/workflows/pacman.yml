@@ -13,21 +13,6 @@ on:
 
 jobs:
   generate:
-name: Generate pacman animation
-
-on:
-  schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
-
-  workflow_dispatch:
-
-  push:
-    branches:
-      - main
-      - feat/implement-pacman
-
-jobs:
-  generate:
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -48,10 +33,6 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Debug - List files
-        if: always()
-        run: ls -R
-
       - name: Move to dist
         run: |
           mkdir -p dist
@@ -64,5 +45,5 @@ jobs:
           publish_branch: output
           publish_dir: dist
           keep_files: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
