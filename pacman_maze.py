@@ -44,10 +44,28 @@ def fetch_contributions():
         exit(1)
     return response.json()
 
-def generate_svg(data):
+def generate_svg(data, theme='dark'):
     calendar = data['data']['user']['contributionsCollection']['contributionCalendar']
     weeks = calendar['weeks']
     
+    # Theme Colors
+    if theme == 'light':
+        bg_color = "#ffffff"
+        text_color = "#000000"
+        wall_color = "#1f6feb" # Keep blue for maze
+        empty_color = "#ebedf0"
+        colors = ["#9be9a8", "#40c463", "#30a14e", "#216e39"] # GitHub Light Green
+        pacman_fill = "#e8c125"
+        mouth_fill = "#ffffff" # Match bg
+    else: # dark
+        bg_color = "#0d1117"
+        text_color = "#58a6ff"
+        wall_color = "#1f6feb"
+        empty_color = "#161b22"
+        colors = ["#0e4429", "#006d32", "#26a641", "#39d353"] # GitHub Dark Green
+        pacman_fill = "#e8c125"
+        mouth_fill = "#0d1117" # Match bg
+
     # SVG Dimensions and Constants
     CELL_SIZE = 15
     CELL_PADDING = 2
@@ -61,21 +79,17 @@ def generate_svg(data):
     svg_content = f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">\n'
     
     # Background
-    svg_content += f'<rect width="100%" height="100%" fill="#0d1117" />\n'
+    svg_content += f'<rect width="100%" height="100%" fill="{bg_color}" />\n'
     
     # Title
-    svg_content += f'<text x="{width/2}" y="20" fill="#58a6ff" font-family="monospace" font-size="14" text-anchor="middle">Pacman Contribution Maze</text>\n'
+    svg_content += f'<text x="{width/2}" y="20" fill="{text_color}" font-family="monospace" font-size="14" text-anchor="middle">Pacman Contribution Maze</text>\n'
 
-    # Maze Walls (Simplified for visual effect)
-    # Top and Bottom Borders
-    svg_content += f'<rect x="{LEFT_PADDING-5}" y="{HEADER_HEIGHT-5}" width="{width - LEFT_PADDING*2 + 10}" height="5" fill="#1f6feb" />\n'
-    svg_content += f'<rect x="{LEFT_PADDING-5}" y="{height - 15}" width="{width - LEFT_PADDING*2 + 10}" height="5" fill="#1f6feb" />\n'
-    # Left and Right Borders
-    svg_content += f'<rect x="{LEFT_PADDING-5}" y="{HEADER_HEIGHT-5}" width="5" height="{height - HEADER_HEIGHT - 10}" fill="#1f6feb" />\n'
-    svg_content += f'<rect x="{width - LEFT_PADDING}" y="{HEADER_HEIGHT-5}" width="5" height="{height - HEADER_HEIGHT - 10}" fill="#1f6feb" />\n'
+    # Maze Walls
+    svg_content += f'<rect x="{LEFT_PADDING-5}" y="{HEADER_HEIGHT-5}" width="{width - LEFT_PADDING*2 + 10}" height="5" fill="{wall_color}" />\n'
+    svg_content += f'<rect x="{LEFT_PADDING-5}" y="{height - 15}" width="{width - LEFT_PADDING*2 + 10}" height="5" fill="{wall_color}" />\n'
+    svg_content += f'<rect x="{LEFT_PADDING-5}" y="{HEADER_HEIGHT-5}" width="5" height="{height - HEADER_HEIGHT - 10}" fill="{wall_color}" />\n'
+    svg_content += f'<rect x="{width - LEFT_PADDING}" y="{HEADER_HEIGHT-5}" width="5" height="{height - HEADER_HEIGHT - 10}" fill="{wall_color}" />\n'
 
-    # Random internal walls logic could go here, but for now we keep it clean to show contributions clearly
-    
     # Draw Contributions
     for i, week in enumerate(weeks):
         for day in week['contributionDays']:
@@ -87,19 +101,19 @@ def generate_svg(data):
             
             # Dot color based on contribution count
             if count == 0:
-                color = "#161b22" # Empty / Faded
+                color = empty_color
                 radius = 2
             elif count < 5:
-                color = "#0e4429"
+                color = colors[0]
                 radius = 3
             elif count < 10:
-                color = "#006d32"
+                color = colors[1]
                 radius = 4
             elif count < 20:
-                color = "#26a641"
+                color = colors[2]
                 radius = 5
             else:
-                color = "#39d353"
+                color = colors[3]
                 radius = 6
             
             # Draw "Food" dot
@@ -110,17 +124,17 @@ def generate_svg(data):
     svg_content += f'''
     <g>
         <animateTransform attributeName="transform" type="translate" from="{LEFT_PADDING} 0" to="{width - LEFT_PADDING} 0" dur="10s" repeatCount="indefinite" />
-        <circle cx="0" cy="{pacman_y}" r="{CELL_SIZE/2 + 2}" fill="#e8c125">
+        <circle cx="0" cy="{pacman_y}" r="{CELL_SIZE/2 + 2}" fill="{pacman_fill}">
             <animate attributeName="fill-opacity" values="1;0.5;1" dur="0.5s" repeatCount="indefinite" />
         </circle>
-        <!-- Mouth animation (simplified wedge) -->
-        <path d="M0,{pacman_y} L10,{pacman_y-5} L10,{pacman_y+5} Z" fill="#0d1117" transform="translate(0,0)">
+        <!-- Mouth animation -->
+        <path d="M0,{pacman_y} L10,{pacman_y-5} L10,{pacman_y+5} Z" fill="{mouth_fill}" transform="translate(0,0)">
              <animateTransform attributeName="transform" type="rotate" values="0 0 {pacman_y}; 30 0 {pacman_y}; 0 0 {pacman_y}" dur="0.2s" repeatCount="indefinite" />
         </path>
     </g>
     '''
     
-    # Add Ghost Character (Chasing Pacman)
+    # Add Ghost Character
     ghost_y = HEADER_HEIGHT + 3 * (CELL_SIZE + CELL_PADDING) + CELL_SIZE/2
     svg_content += f'''
     <g>
@@ -140,17 +154,24 @@ def main():
     print("Fetching contributions...")
     data = fetch_contributions()
     
-    print("Generating SVG...")
-    svg_content = generate_svg(data)
-    
     # Ensure dist exists
     os.makedirs(DIST_DIR, exist_ok=True)
     
-    output_path = os.path.join(DIST_DIR, OUTPUT_FILE)
-    with open(output_path, 'w') as f:
-        f.write(svg_content)
-    
-    print(f"Successfully generated {output_path}")
+    # Generate Dark Theme
+    print("Generating Dark Theme SVG...")
+    svg_dark = generate_svg(data, theme='dark')
+    output_path_dark = os.path.join(DIST_DIR, 'pacman-contribution-graph.svg')
+    with open(output_path_dark, 'w') as f:
+        f.write(svg_dark)
+    print(f"Successfully generated {output_path_dark}")
+
+    # Generate Light Theme
+    print("Generating Light Theme SVG...")
+    svg_light = generate_svg(data, theme='light')
+    output_path_light = os.path.join(DIST_DIR, 'pacman-contribution-graph-light.svg')
+    with open(output_path_light, 'w') as f:
+        f.write(svg_light)
+    print(f"Successfully generated {output_path_light}")
 
 if __name__ == "__main__":
     main()
