@@ -53,6 +53,8 @@ class MazeGenerator:
         self.visited = [[False for _ in range(cols)] for _ in range(rows)]
 
     def generate(self):
+        # Use deterministic seed based on grid dimensions to ensure consistent maze
+        random.seed(self.rows * 1000 + self.cols)
         self._dfs(0, 0)
         # Open start and end
         self.walls_v[0][0] = False

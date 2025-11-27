@@ -4,10 +4,6 @@ on:
   schedule:
     - cron: "0 */12 * * *"
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - feat/implement-pacman
 
 jobs:
   generate:
@@ -26,6 +22,9 @@ jobs:
           python-version: "3.x"
 
       - name: Generate Pacman Maze SVG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER_NAME: ${{ github.repository_owner }}
         run: python pacman_maze.py
 
       - name: push pacman-contribution-graph.svg to the output branch
