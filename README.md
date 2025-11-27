@@ -1,33 +1,43 @@
-<div align="center">
-  
-# 👋 Hi, I'm Nazmus Sakib Tamim
-
-### 💻 Software Engineer | 🚀 Full-Stack Developer | 🎨 UI/UX Enthusiast
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=35&pause=1000&color=F75C7E&center=true&vCenter=true&random=false&width=600&height=70&lines=Hi+%F0%9F%91%8B+I'm+Sakib+Tamim;Frontend+Developer;React+%7C+Next.js+Specialist;UI/UX+Enthusiast" alt="Typing SVG" />
+</h1>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=sakibtamim&label=Profile%20views&color=0e75b6&style=for-the-badge" alt="sakibtamim" />
-  <img src="https://img.shields.io/github/followers/sakibtamim?label=Followers&style=for-the-badge&color=blue" alt="followers" />
+  <img src="https://komarev.com/ghpvc/?username=sakibtamim&label=Profile%20Views&color=blueviolet&style=flat-square" alt="Profile views" />
+  <img src="https://img.shields.io/github/followers/sakibtamim?label=Followers&style=flat-square&color=blue" alt="followers" />
+  <img src="https://img.shields.io/badge/Focus-Frontend%20Development-brightgreen?style=flat-square" alt="focus" />
+  <img src="https://img.shields.io/badge/Lives-Bangladesh-success?style=flat-square" alt="location" />
 </p>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&pause=1000&color=F75C7E&center=true&vCenter=true&random=false&width=600&lines=Building+Modern+Web+Applications;Next.js+%7C+React+%7C+TypeScript;Passionate+About+Clean+Code;Always+Learning+New+Things)](https://git.io/typing-svg)
+<br/>
 
-</div>
+## 👨‍💻 About Me
 
----
+<img align="right" alt="Coding" width="400" src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
 
-## 🚀 About Me
-
-```typescript
-const sakib = {
-  currentRole: "Software Engineer Lvl-0",
+```javascript
+const sakibTamim = {
+  role: "Software Engineer Lvl-0",
   company: "Purrfect Software Limited",
-  location: "Bangladesh 🇧🇩",
-  expertise: ["React", "Next.js", "Redux"],
-  currentlyLearning: ["Turborepo", "TypeScript", "Monorepo Architecture" , "Shadcn/ui"],
-  interests: ["Web Development", "UI/UX Design", "Open Source"],
-  funFact: "I debug with console.log() and I'm not ashamed! 😄",
+  location: "Dhaka, Bangladesh 🇧🇩",
+  code: ["JavaScript", "TypeScript", "HTML", "CSS"],
+  technologies: {
+    frontEnd: {
+      frameworks: ["React", "Next.js"],
+      stateManagement: ["Redux"],
+      styling: ["TailwindCSS", "SASS", "shadcn/ui"],
+    },
+    tools: ["Git", "GitHub", "Turborepo", "Figma"],
+    deployment: ["Vercel", "Netlify"],
+  },
+  currentFocus: "Building scalable monorepo architectures",
+  learning: ["Turborepo", "TypeScript", "Shadcn/ui"],
+  askMeAbout: ["React", "Next.js", "Redux", "Monorepo"],
+  funFact: "I turn coffee ☕ into code �",
 };
 ```
+
+<br/>
 
 <div align="center">
 
@@ -107,7 +117,7 @@ const sakib = {
 
 ---
 
-## 💡 Random Dev Quote
+## 💡 Quote of the Day
 
 <div align="center">
 
@@ -143,15 +153,13 @@ const sakib = {
 
 </div>
 
----
-
 <div align="center">
 
-### 📊 Profile Stats
-
-[![](https://visitcount.itsvg.in/api?id=sakibtamim&icon=2&color=6)](https://visitcount.itsvg.in)
-
 ---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e96443,50:904e95,100:6a4c93&height=100&section=footer"/>
+</p>
 
 **⭐️ From [sakibtamim](https://github.com/sakibtamim) | Made with ❤️ and ☕**
 
