@@ -5,7 +5,7 @@ import datetime
 # Configuration
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
 USERNAME = os.environ.get('GITHUB_USER_NAME')
-OUTPUT_FILE = 'dist/pacman-contribution-graph.svg'
+OUTPUT_FILE = 'pacman-contribution-graph.svg'
 
 if not GITHUB_TOKEN or not USERNAME:
     print("Error: GITHUB_TOKEN and GITHUB_USER_NAME environment variables are required.")
@@ -116,8 +116,7 @@ svg_content += f'<path d="M {pacman_x} {pacman_y} L {pacman_x + CELL_SIZE} {pacm
 
 svg_content += '</svg>'
 
-# Ensure dist exists
-os.makedirs('dist', exist_ok=True)
+
 
 with open(OUTPUT_FILE, 'w') as f:
     f.write(svg_content)
