@@ -111,7 +111,7 @@ const sakibTamim = {
 
 ### 🎮 Pacman Eating My Contributions
 
-![github-pacman](https://raw.githubusercontent.com/sakibtamim/sakibtamim/dist/pacman-contribution-graph.svg)
+![github-pacman](https://raw.githubusercontent.com/sakibtamim/sakibtamim/output/pacman-contribution-graph.svg)
 
 </div>
 
