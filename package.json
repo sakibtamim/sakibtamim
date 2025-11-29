@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/sakibtamim/sakibtamim#readme",
   "dependencies": {
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "pacman-contribution-graph": "^2.3.0"
   }
 }
