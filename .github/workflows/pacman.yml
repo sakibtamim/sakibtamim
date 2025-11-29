@@ -1,40 +1,31 @@
-name: Generate pacman animation
+name: generate pacman game
 
 on:
-  schedule:
-    - cron: "0 */12 * * *"
-  workflow_dispatch:
-  push:
+  schedule: # Run automatically every 24 hours
+    - cron: "* */12 * * *"
+  workflow_dispatch: # Allows manual triggering
+  push: # Runs on every push to the main branch
     branches:
       - main
-      - master
-      - feat/pacman-ui
+      - feat/pacman
 
 jobs:
   generate:
     permissions:
       contents: write
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Create dist directory
+        run: mkdir -p dist
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
+      - name: generate pacman-contribution-graph.svg
+        run: |
+          npx pacman-contribution-graph --platform github --username ${{ github.repository_owner }} --gameTheme github --output dist/pacman-contribution-graph.svg
+          npx pacman-contribution-graph --platform github --username ${{ github.repository_owner }} --gameTheme github-dark --output dist/pacman-contribution-graph-dark.svg
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Generate Pacman Maze SVG
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_USER_NAME: ${{ github.repository_owner }}
-        run: node pacman_maze.js
-
+      # Push the generated SVG to the output branch
       - name: push pacman-contribution-graph.svg to the output branch
         uses: peaceiris/actions-gh-pages@v3
         with:
