@@ -234,7 +234,9 @@ function generateSvg(data, theme = "dark") {
   solutionPath.forEach((pos, index) => {
     const [r, c] = pos;
     const time = (index / solutionPath.length) * duration;
-    eatingTimes[`${r},${c}`] = time;
+    if (eatingTimes[`${r},${c}`] === undefined) {
+      eatingTimes[`${r},${c}`] = time;
+    }
   });
 
   // draw contributions
