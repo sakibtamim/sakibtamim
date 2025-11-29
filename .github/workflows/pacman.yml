@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 */12 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - feat/pacman-ui
 
 jobs:
   generate:
