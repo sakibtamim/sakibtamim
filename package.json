@@ -1,0 +1,24 @@
+{
+  "name": "sakibtamim",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">\r   <img src=\"https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=35&pause=1000&color=F75C7E&center=true&vCenter=true&random=false&width=600&height=70&lines=Hi+%F0%9F%91%8B+I'm+Sakib+Tamim;Frontend+Developer;React+%7C+Next.js+Specialist;UI/UX+Enthusiast\" alt=\"Typing SVG\" />\r </h1>",
+  "main": "pacman_maze.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakibtamim/sakibtamim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sakibtamim/sakibtamim/issues"
+  },
+  "homepage": "https://github.com/sakibtamim/sakibtamim#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

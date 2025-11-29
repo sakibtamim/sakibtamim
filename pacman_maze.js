@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
+// Load environment variables from .env file
+require("dotenv").config();
+
 // Configuration
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const USERNAME = process.env.GITHUB_USER_NAME;
