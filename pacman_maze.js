@@ -74,17 +74,15 @@ class MazeGenerator {
   }
 
   generate() {
-    // Use deterministic seed based on grid dimensions to ensure consistent maze
     this.seed = this.rows * 1000 + this.cols;
     this.random = this.seededRandom(this.seed);
     this.dfs(0, 0);
-    // Open start and end
     this.walls_v[0][0] = false;
     this.walls_v[this.rows - 1][this.cols] = false;
   }
 
   seededRandom(seed) {
-    let m = 0x80000000; // 2**31
+    let m = 0x80000000;
     let a = 1103515245;
     let c = 12345;
     let state = seed;
@@ -109,7 +107,7 @@ class MazeGenerator {
       [1, 0],
       [0, -1],
       [-1, 0],
-    ]; // Right, Down, Left, Up
+    ];
     this.shuffle(directions);
 
     for (const [dr, dc] of directions) {
@@ -122,49 +120,36 @@ class MazeGenerator {
         nc < this.cols &&
         !this.visited[nr][nc]
       ) {
-        // Remove wall
-        switch (`${dr},${dc}`) {
-          case "0,1": // Right
-            this.walls_v[r][c + 1] = false;
-            break;
-          case "1,0": // Down
-            this.walls_h[r + 1][c] = false;
-            break;
-          case "0,-1": // Left
-            this.walls_v[r][c] = false;
-            break;
-          case "-1,0": // Up
-            this.walls_h[r][c] = false;
-            break;
-        }
+        if (dr === 0 && dc === 1) this.walls_v[r][c + 1] = false;
+        else if (dr === 1 && dc === 0) this.walls_h[r + 1][c] = false;
+        else if (dr === 0 && dc === -1) this.walls_v[r][c] = false;
+        else if (dr === -1 && dc === 0) this.walls_h[r][c] = false;
+
         this.dfs(nr, nc);
       }
     }
   }
-  solve() {
-    // DFS for longer path
-    const stack = [[0, 0]];
+
+  // NEW FULL TRAVERSAL – VISITS EVERY CELL
+  fullTraversal() {
     const visited = Array(this.rows)
       .fill()
       .map(() => Array(this.cols).fill(false));
-    const parent = {};
-    visited[0][0] = true;
 
-    while (stack.length > 0) {
-      const [r, c] = stack.pop();
+    const path = [];
 
-      if (r === this.rows - 1 && c === this.cols - 1) {
-        break;
-      }
+    const dfsWalk = (r, c) => {
+      visited[r][c] = true;
+      path.push([r, c]);
 
       const directions = [
         [0, 1],
         [1, 0],
         [0, -1],
         [-1, 0],
-      ]; // Right, Down, Left, Up
+      ];
 
-      // Shuffle directions for random path
+      // shuffle
       for (let i = directions.length - 1; i > 0; i--) {
         const j = Math.floor(this.random() * (i + 1));
         [directions[i], directions[j]] = [directions[j], directions[i]];
@@ -174,47 +159,24 @@ class MazeGenerator {
         const nr = r + dr;
         const nc = c + dc;
 
-        if (
-          nr >= 0 &&
-          nr < this.rows &&
-          nc >= 0 &&
-          nc < this.cols &&
-          !visited[nr][nc]
-        ) {
-          // Check if there is a wall between current and next
-          let hasWall = false;
-          if (dr === 0 && dc === 1) {
-            // Right
-            if (this.walls_v[r][c + 1]) hasWall = true;
-          } else if (dr === 1 && dc === 0) {
-            // Down
-            if (this.walls_h[r + 1][c]) hasWall = true;
-          } else if (dr === 0 && dc === -1) {
-            // Left
-            if (this.walls_v[r][c]) hasWall = true;
-          } else if (dr === -1 && dc === 0) {
-            // Up
-            if (this.walls_h[r][c]) hasWall = true;
-          }
+        if (nr < 0 || nr >= this.rows || nc < 0 || nc >= this.cols) continue;
+        if (visited[nr][nc]) continue;
 
-          if (!hasWall) {
-            visited[nr][nc] = true;
-            stack.push([nr, nc]);
-            parent[`${nr},${nc}`] = [r, c];
-          }
+        let blocked = false;
+        if (dr === 0 && dc === 1 && this.walls_v[r][c + 1]) blocked = true;
+        if (dr === 0 && dc === -1 && this.walls_v[r][c]) blocked = true;
+        if (dr === 1 && dc === 0 && this.walls_h[r + 1][c]) blocked = true;
+        if (dr === -1 && dc === 0 && this.walls_h[r][c]) blocked = true;
+
+        if (!blocked) {
+          dfsWalk(nr, nc);
+          path.push([r, c]); // backtrack for animation smoothness
         }
       }
-    }
+    };
 
-    // Reconstruct path
-    const path = [];
-    let curr = [this.rows - 1, this.cols - 1];
-    while (curr) {
-      path.push(curr);
-      const [r, c] = curr;
-      curr = parent[`${r},${c}`];
-    }
-    return path.reverse();
+    dfsWalk(0, 0);
+    return path;
   }
 }
 
@@ -222,7 +184,6 @@ function generateSvg(data, theme = "dark") {
   const calendar = data.data.user.contributionsCollection.contributionCalendar;
   const weeks = calendar.weeks;
 
-  // Constants
   const CELL_SIZE = 15;
   const CELL_PADDING = 3;
   const HEADER_HEIGHT = 40;
@@ -230,7 +191,6 @@ function generateSvg(data, theme = "dark") {
   const ROWS = 7;
   const COLS = weeks.length;
 
-  // Theme Colors (Matching the screenshot)
   let bg_color, text_color, wall_color, empty_color, colors;
 
   if (theme === "light") {
@@ -240,10 +200,9 @@ function generateSvg(data, theme = "dark") {
     empty_color = "#ebedf0";
     colors = ["#9be9a8", "#40c463", "#30a14e", "#216e39"];
   } else {
-    // dark
-    bg_color = "#0d1117"; // Dark background
+    bg_color = "#0d1117";
     text_color = "#ffffff";
-    wall_color = "#ffffff"; // White walls as per screenshot
+    wall_color = "#ffffff";
     empty_color = "#161b22";
     colors = ["#0e4429", "#006d32", "#26a641", "#39d353"];
   }
@@ -255,7 +214,6 @@ function generateSvg(data, theme = "dark") {
   svg_content += `<!-- Generated by Custom Pacman Maze Script -->\n`;
   svg_content += `<rect width="100%" height="100%" fill="${bg_color}" />\n`;
 
-  // Title
   svg_content += `
     <g transform="translate(${LEFT_PADDING}, 25)">
         <path d="M0,0 L2,0 L2,2 L4,2 L4,0 L6,0 L6,2 L8,2 L8,0 L10,0 L10,6 L8,6 L8,8 L10,8 L10,10 L0,10 L0,8 L2,8 L2,6 L0,6 Z" fill="#9be9a8" transform="scale(1.5) translate(0, -5)"/>
@@ -263,23 +221,23 @@ function generateSvg(data, theme = "dark") {
     </g>
     `;
 
-  // Generate Maze
+  // generate maze + FULL traversal
   const maze = new MazeGenerator(ROWS, COLS);
   maze.generate();
-  const solutionPath = maze.solve();
+  const solutionPath = maze.fullTraversal();
 
-  // Calculate arrival times for eating animation
-  const duration = 30; // Seconds for one traversal (slower for longer path)
+  // scale duration
+  const duration = Math.max(30, solutionPath.length * 0.15);
+
+  // compute eating times
   const eatingTimes = {};
-  if (solutionPath.length > 0) {
-    solutionPath.forEach((pos, index) => {
-      const [r, c] = pos;
-      const time = (index / solutionPath.length) * duration;
-      eatingTimes[`${r},${c}`] = time;
-    });
-  }
+  solutionPath.forEach((pos, index) => {
+    const [r, c] = pos;
+    const time = (index / solutionPath.length) * duration;
+    eatingTimes[`${r},${c}`] = time;
+  });
 
-  // Draw Contributions (Cells)
+  // draw contributions
   for (let i = 0; i < weeks.length; i++) {
     const week = weeks[i];
     for (const day of week.contributionDays) {
@@ -290,19 +248,12 @@ function generateSvg(data, theme = "dark") {
       const y = HEADER_HEIGHT + weekday * (CELL_SIZE + CELL_PADDING);
 
       let color;
-      if (count === 0) {
-        color = empty_color;
-      } else if (count < 5) {
-        color = colors[0];
-      } else if (count < 10) {
-        color = colors[1];
-      } else if (count < 20) {
-        color = colors[2];
-      } else {
-        color = colors[3];
-      }
+      if (count === 0) color = empty_color;
+      else if (count < 5) color = colors[0];
+      else if (count < 10) color = colors[1];
+      else if (count < 20) color = colors[2];
+      else color = colors[3];
 
-      // Rounded rects for cells
       let animateTag = "";
       const arrivalTime = eatingTimes[`${weekday},${i}`];
       if (arrivalTime !== undefined) {
@@ -315,11 +266,11 @@ function generateSvg(data, theme = "dark") {
     }
   }
 
-  // Draw Maze Walls
+  // walls
   const wall_stroke = 2;
   let path_d = "";
 
-  // Horizontal Walls
+  // horizontal
   for (let r = 0; r <= ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       if (maze.walls_h[r][c]) {
@@ -333,7 +284,7 @@ function generateSvg(data, theme = "dark") {
     }
   }
 
-  // Vertical Walls
+  // vertical
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c <= COLS; c++) {
       if (maze.walls_v[r][c]) {
@@ -349,7 +300,7 @@ function generateSvg(data, theme = "dark") {
 
   svg_content += `<path d="${path_d}" stroke="${wall_color}" stroke-width="${wall_stroke}" stroke-linecap="round" fill="none" />\n`;
 
-  // Generate Path String for Animation
+  // animation path
   let animPath = "";
   if (solutionPath.length > 0) {
     const startR = solutionPath[0][0];
@@ -369,10 +320,7 @@ function generateSvg(data, theme = "dark") {
     }
   }
 
-  // Characters (Pacman + Ghosts)
-  // const duration = 30; // Defined above
-
-  // Pacman
+  // pacman
   svg_content += `
     <g>
         <circle cx="0" cy="0" r="6" fill="#e8c125">
@@ -386,21 +334,18 @@ function generateSvg(data, theme = "dark") {
     </g>
     `;
 
-  // Ghosts (Blinky, Pinky, Inky, Clyde)
   const ghosts = [
-    { color: "#ff0000", delay: 0.5 }, // Blinky (Red)
-    { color: "#ffb8ff", delay: 1.0 }, // Pinky (Pink)
-    { color: "#00ffff", delay: 1.5 }, // Inky (Cyan)
-    { color: "#ffb852", delay: 2.0 }, // Clyde (Orange)
+    { color: "#ff0000", delay: 0.5 },
+    { color: "#ffb8ff", delay: 1.0 },
+    { color: "#00ffff", delay: 1.5 },
+    { color: "#ffb852", delay: 2.0 },
   ];
 
   for (const ghost of ghosts) {
-    const delay = ghost.delay;
-    const color = ghost.color;
     svg_content += `
         <g>
-            <animateMotion path="${animPath}" dur="${duration}s" begin="${delay}s" repeatCount="indefinite" rotate="auto" />
-            <path d="M-6,6 Q-6,-6 0,-6 Q6,-6 6,6 L6,8 L3,6 L0,8 L-3,6 L-6,8 Z" fill="${color}" transform="translate(0, -2)" />
+            <animateMotion path="${animPath}" dur="${duration}s" begin="${ghost.delay}s" repeatCount="indefinite" rotate="auto" />
+            <path d="M-6,6 Q-6,-6 0,-6 Q6,-6 6,6 L6,8 L3,6 L0,8 L-3,6 L-6,8 Z" fill="${ghost.color}" transform="translate(0, -2)" />
             <circle cx="-2" cy="-2" r="1.5" fill="white" />
             <circle cx="2" cy="-2" r="1.5" fill="white" />
             <circle cx="-2" cy="-2" r="0.8" fill="blue" />
@@ -417,12 +362,10 @@ async function main() {
   console.log("Fetching contributions...");
   const data = await fetchContributions();
 
-  // Ensure dist exists
   if (!fs.existsSync(DIST_DIR)) {
     fs.mkdirSync(DIST_DIR, { recursive: true });
   }
 
-  // Generate SVGs for themes
   const themes = {
     dark: "pacman-contribution-graph.svg",
     light: "pacman-contribution-graph-light.svg",
