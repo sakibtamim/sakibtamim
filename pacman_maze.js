@@ -7,7 +7,6 @@ require("dotenv").config();
 // Configuration
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const USERNAME = process.env.GITHUB_USER_NAME;
-const OUTPUT_FILE = "pacman-contribution-graph.svg";
 const DIST_DIR = "dist";
 
 if (!GITHUB_TOKEN || !USERNAME) {
@@ -124,18 +123,19 @@ class MazeGenerator {
         !this.visited[nr][nc]
       ) {
         // Remove wall
-        if (dr === 0 && dc === 1) {
-          // Right
-          this.walls_v[r][c + 1] = false;
-        } else if (dr === 1 && dc === 0) {
-          // Down
-          this.walls_h[r + 1][c] = false;
-        } else if (dr === 0 && dc === -1) {
-          // Left
-          this.walls_v[r][c] = false;
-        } else if (dr === -1 && dc === 0) {
-          // Up
-          this.walls_h[r][c] = false;
+        switch (`${dr},${dc}`) {
+          case "0,1": // Right
+            this.walls_v[r][c + 1] = false;
+            break;
+          case "1,0": // Down
+            this.walls_h[r + 1][c] = false;
+            break;
+          case "0,-1": // Left
+            this.walls_v[r][c] = false;
+            break;
+          case "-1,0": // Up
+            this.walls_h[r][c] = false;
+            break;
         }
         this.dfs(nr, nc);
       }
@@ -320,22 +320,19 @@ async function main() {
     fs.mkdirSync(DIST_DIR, { recursive: true });
   }
 
-  // Generate Dark Theme (Default)
-  console.log("Generating Dark Theme SVG...");
-  const svg_dark = generateSvg(data, "dark");
-  const output_path_dark = path.join(DIST_DIR, "pacman-contribution-graph.svg");
-  fs.writeFileSync(output_path_dark, svg_dark);
-  console.log(`Successfully generated ${output_path_dark}`);
+  // Generate SVGs for themes
+  const themes = {
+    dark: "pacman-contribution-graph.svg",
+    light: "pacman-contribution-graph-light.svg",
+  };
 
-  // Generate Light Theme
-  console.log("Generating Light Theme SVG...");
-  const svg_light = generateSvg(data, "light");
-  const output_path_light = path.join(
-    DIST_DIR,
-    "pacman-contribution-graph-light.svg"
-  );
-  fs.writeFileSync(output_path_light, svg_light);
-  console.log(`Successfully generated ${output_path_light}`);
+  for (const [theme, filename] of Object.entries(themes)) {
+    console.log(`Generating ${theme} theme SVG...`);
+    const svg = generateSvg(data, theme);
+    const outputPath = path.join(DIST_DIR, filename);
+    fs.writeFileSync(outputPath, svg);
+    console.log(`Successfully generated ${outputPath}`);
+  }
 }
 
 if (require.main === module) {
