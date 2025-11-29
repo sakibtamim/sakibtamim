@@ -142,15 +142,16 @@ class MazeGenerator {
     }
   }
   solve() {
-    const queue = [[0, 0]];
+    // DFS for longer path
+    const stack = [[0, 0]];
     const visited = Array(this.rows)
       .fill()
       .map(() => Array(this.cols).fill(false));
     const parent = {};
     visited[0][0] = true;
 
-    while (queue.length > 0) {
-      const [r, c] = queue.shift();
+    while (stack.length > 0) {
+      const [r, c] = stack.pop();
 
       if (r === this.rows - 1 && c === this.cols - 1) {
         break;
@@ -162,6 +163,12 @@ class MazeGenerator {
         [0, -1],
         [-1, 0],
       ]; // Right, Down, Left, Up
+
+      // Shuffle directions for random path
+      for (let i = directions.length - 1; i > 0; i--) {
+        const j = Math.floor(this.random() * (i + 1));
+        [directions[i], directions[j]] = [directions[j], directions[i]];
+      }
 
       for (const [dr, dc] of directions) {
         const nr = r + dr;
@@ -192,7 +199,7 @@ class MazeGenerator {
 
           if (!hasWall) {
             visited[nr][nc] = true;
-            queue.push([nr, nc]);
+            stack.push([nr, nc]);
             parent[`${nr},${nc}`] = [r, c];
           }
         }
@@ -261,6 +268,17 @@ function generateSvg(data, theme = "dark") {
   maze.generate();
   const solutionPath = maze.solve();
 
+  // Calculate arrival times for eating animation
+  const duration = 30; // Seconds for one traversal (slower for longer path)
+  const eatingTimes = {};
+  if (solutionPath.length > 0) {
+    solutionPath.forEach((pos, index) => {
+      const [r, c] = pos;
+      const time = (index / solutionPath.length) * duration;
+      eatingTimes[`${r},${c}`] = time;
+    });
+  }
+
   // Draw Contributions (Cells)
   for (let i = 0; i < weeks.length; i++) {
     const week = weeks[i];
@@ -285,7 +303,15 @@ function generateSvg(data, theme = "dark") {
       }
 
       // Rounded rects for cells
-      svg_content += `<rect x="${x}" y="${y}" width="${CELL_SIZE}" height="${CELL_SIZE}" rx="2" fill="${color}" />\n`;
+      let animateTag = "";
+      const arrivalTime = eatingTimes[`${weekday},${i}`];
+      if (arrivalTime !== undefined) {
+        animateTag = `<animate attributeName="opacity" values="1;0" begin="${arrivalTime}s" dur="0.1s" fill="freeze" />`;
+      }
+
+      svg_content += `<rect x="${x}" y="${y}" width="${CELL_SIZE}" height="${CELL_SIZE}" rx="2" fill="${color}">
+        ${animateTag}
+      </rect>\n`;
     }
   }
 
@@ -344,7 +370,7 @@ function generateSvg(data, theme = "dark") {
   }
 
   // Characters (Pacman + Ghosts)
-  const duration = 20; // Seconds for one traversal
+  // const duration = 30; // Defined above
 
   // Pacman
   svg_content += `
