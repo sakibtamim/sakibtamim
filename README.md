@@ -88,7 +88,7 @@ const sakibTamim = {
 
 <div align="center">
   <!-- <img height="180em" src="https://github-readme-stats.vercel.app/api?username=sakibtamim&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true"/> -->
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=sakibtamim&layout=compact&langs_count=8&theme=radical&hide_border=true"/>
+  <img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=sakibtamim&layout=compact&langs_count=8&theme=radical&hide_border=true"/>
 </div>
 
 <div align="center">
@@ -96,7 +96,7 @@ const sakibTamim = {
 </div>
 
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=sakibtamim&theme=radical&no-frame=true&no-bg=false&margin-w=4&row=1" />
+  <img src="https://github-profile-trophy.screw-hand.vercel.app/?username=sakibtamim&theme=radical&no-frame=true&no-bg=false&margin-w=4&row=1&v=1" />
 </div>
 
 ---
