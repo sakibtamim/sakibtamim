@@ -87,16 +87,17 @@ const sakibTamim = {
 ## 📊 GitHub Analytics
 
 <div align="center">
-  <!-- <img height="180em" src="https://github-readme-stats.vercel.app/api?username=sakibtamim&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true"/> -->
-  <img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=sakibtamim&layout=compact&langs_count=8&theme=radical&hide_border=true"/>
+  <!-- Top Languages (Working) -->
+  <img height="180em" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=sakibtamim&theme=radical"/>
 </div>
 
 <div align="center">
-  <img src="https://nirzak-streak-stats.vercel.app/?user=sakibtamim&theme=radical&hide_border=true" alt="sakibtamim" />
-</div>
-
-<div align="center">
+  <!-- Profile Trophy (Working) -->
   <img src="https://github-profile-trophy.screw-hand.vercel.app/?username=sakibtamim&theme=radical&no-frame=true&no-bg=false&margin-w=4&row=1&v=1" />
+</div>
+
+<div align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=sakibtamim&theme=radical" alt="GitHub Profile Summary" />
 </div>
 
 ---
