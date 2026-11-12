@@ -154,7 +154,6 @@ const sakibTamim = {
 ### 📫 How to Reach Me
 
 📧 **Personal:** sakib.tamim@gmail.com  
-💼 **Official:** sakib@purrfecthq.com
 
 </div>
 
