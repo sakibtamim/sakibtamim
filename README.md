@@ -1,11 +1,15 @@
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=35&pause=1000&color=F75C7E&center=true&vCenter=true&random=false&width=600&height=70&lines=Hi+%F0%9F%91%8B+I'm+Sakib+Tamim;Frontend+Developer;React+%7C+Next.js+Specialist;UI/UX+Enthusiast" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=35&pause=1000&color=F75C7E&center=true&vCenter=true&random=false&width=700&height=70&lines=Hi+%F0%9F%91%8B+I'm+Sakib+Tamim;Software+Engineer+(Web);Next.js+%26+Full-Stack+Specialist;Frontend+Architect" alt="Typing SVG" />
 </h1>
+
+<p align="center">
+  <a href="https://sakibtamim.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-sakibtamim.vercel.app-blueviolet?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+</p>
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=sakibtamim&label=Profile%20Views&color=blueviolet&style=flat-square" alt="Profile views" />
   <img src="https://img.shields.io/github/followers/sakibtamim?label=Followers&style=flat-square&color=blue" alt="followers" />
-  <img src="https://img.shields.io/badge/Focus-Frontend%20Development-brightgreen?style=flat-square" alt="focus" />
+  <img src="https://img.shields.io/badge/Focus-Full--Stack%20%26%20Frontend-brightgreen?style=flat-square" alt="focus" />
   <img src="https://img.shields.io/badge/Lives-Bangladesh-success?style=flat-square" alt="location" />
 </p>
 
@@ -17,23 +21,28 @@
 
 ```javascript
 const sakibTamim = {
-  role: "Software Engineer Lvl-0",
+  role: "Software Engineer (Web)",
   company: "Purrfect Software Limited",
   location: "Dhaka, Bangladesh 🇧🇩",
-  code: ["JavaScript", "TypeScript", "HTML", "CSS"],
+  code: ["TypeScript", "JavaScript", "SQL", "HTML5", "CSS3"],
   technologies: {
     frontEnd: {
-      frameworks: ["React", "Next.js"],
-      stateManagement: ["Redux"],
-      styling: ["TailwindCSS", "SASS", "shadcn/ui"],
+      frameworks: ["React 19", "Next.js 15 (App Router)"],
+      stateManagement: ["Zustand", "Redux Toolkit"],
+      styling: ["Tailwind CSS v4", "shadcn/ui", "Framer Motion"],
     },
-    tools: ["Git", "GitHub", "Turborepo", "Figma"],
-    deployment: ["Vercel", "Netlify"],
+    backEnd: {
+      frameworks: ["NestJS", "Node.js", "Fastify"],
+      databases: ["PostgreSQL"],
+      orm: ["Prisma", "Drizzle"],
+    },
+    tools: ["Turborepo", "pnpm", "Git", "GitHub", "Figma", "Antigravity"],
+    testing: ["Vitest", "Playwright"],
+    devOps: ["Docker", "Vercel", "Netlify"],
   },
-  currentFocus: "Building scalable monorepo architectures",
-  learning: ["Turborepo", "TypeScript", "Shadcn/ui"],
-  askMeAbout: ["React", "Next.js", "Redux", "Monorepo"],
-  funFact: "I turn coffee ☕ into code �",
+  currentFocus: "Architecting high-performance enterprise web apps & healthcare SaaS",
+  askMeAbout: ["Next.js", "React", "TypeScript", "Full-Stack Web", "Monorepo"],
+  funFact: "I turn coffee ☕ into clean code 💻",
 };
 ```
 
@@ -62,25 +71,65 @@ const sakibTamim = {
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-443e38?style=for-the-badge&logo=react&logoColor=white)
+
+### Backend & Databases
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![Fastify](https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![Drizzle](https://img.shields.io/badge/Drizzle_ORM-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black)
 
 ### Styling & Design
 
-![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-### Tools & Platforms
+### Tools & DevOps
 
 ![Git](https://img.shields.io/badge/Git-F05033?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
-![NPM](https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?style=for-the-badge&logo=turborepo&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 
 </div>
+
+---
+
+## 🚀 Featured Projects
+
+- **Motion Connect** — Healthcare & Rehabilitation SaaS Platform  
+  *Tech Stack:* `Next.js 15` • `React 19` • `TypeScript` • `Tailwind CSS v4` • `shadcn/ui` • `Zustand` • `Zod` • `Turborepo`  
+  *Engineered core administrative and clinical modules for a multi-tenant healthcare platform with type-safe state management.*
+
+- **[Sunshine Physiotherapy](https://www.sunshineptc.com/)** — Clinical Care & Patient Triage Web Platform  
+  *Tech Stack:* `Next.js (App Router)` • `React` • `TypeScript` • `Tailwind CSS` • `Drizzle ORM` • `PostgreSQL` • `Docker` • `Playwright`  
+  *End-to-end patient triage and therapist appointment booking platform with automated Playwright testing.*
+
+- **Motion Mechanics** — Corporate Healthcare Web Platform  
+  *Tech Stack:* `Next.js` • `TypeScript` • `Tailwind CSS` • `Framer Motion` • `SEO Schema`  
+  *Modern corporate healthcare platform featuring fluid animations, dynamic booking flows, and structured JSON-LD SEO schema.*
+
+- **Purrfect Software Limited** — Corporate Portal & Technical Showcase  
+  *Tech Stack:* `Next.js 15` • `React 19` • `TypeScript` • `Tailwind CSS` • `Turborepo`  
+  *Official corporate web application and case study showcase architected in a Turborepo monorepo.*
+
+- **[Jasper](https://github.com/sakibtamim/Jasper)** — High-Resilience Discord Streaming Engine  
+  *Tech Stack:* `TypeScript` • `Node.js` • `Discord.js` • `yt-dlp` • `FFmpeg` • `Turborepo` • `Vitest`  
+  *Open-source media streaming engine overcoming CDN rate limits with multi-guild queues and stream caching.*
+
+- **[PurrTrack](https://github.com/sakibtamim/purrtrack)** — Enterprise Voice Activity Tracking & Analytics System  
+  *Tech Stack:* `TypeScript` • `Discord.js` • `Fastify` • `Drizzle ORM` • `PostgreSQL` • `Vitest`  
+  *Automated voice presence monitoring bot with relational PostgreSQL schemas and analytical reporting.*
 
 ---
 
@@ -136,10 +185,10 @@ const sakibTamim = {
 
 <div align="center">
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-sakibtamim.vercel.app-blueviolet?style=for-the-badge&logo=vercel&logoColor=white)](https://sakibtamim.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/sakibtamim)
-[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.com/sakib.tamim.7)
-[![Email Personal](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sakib.tamim@gmail.com)
-[![Email Official](https://img.shields.io/badge/Official_Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sakib@purrfecthq.com)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sakibtamim)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sakib.tamim@gmail.com)
 
 </div>
 
@@ -149,11 +198,12 @@ const sakibTamim = {
 
 ### 💬 Ask Me About
 
-**React** • **Next.js** • **TypeScript** • **Redux** • **Turborepo** • **Monorepo Architecture**
+**React** • **Next.js** • **TypeScript** • **Full-Stack Web** • **Turborepo** • **Healthcare SaaS**
 
 ### 📫 How to Reach Me
 
-📧 **Personal:** sakib.tamim@gmail.com  
+📧 **Email:** [sakib.tamim@gmail.com](mailto:sakib.tamim@gmail.com)  
+🌐 **Portfolio:** [sakibtamim.vercel.app](https://sakibtamim.vercel.app/)
 
 </div>
 
