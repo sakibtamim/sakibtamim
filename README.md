@@ -35,7 +35,7 @@ const sakibTamim = {
       databases: ["PostgreSQL"],
       orm: ["Prisma", "Drizzle"],
     },
-    aiVelocity: ["Google Gemini", "Claude", "ChatGPT", "GitHub Copilot", "Antigravity"],
+    aiVelocity: ["Google Antigravity Agent", "Gemini", "Claude", "ChatGPT", "GitHub Copilot"],
     tools: ["Turborepo", "pnpm", "Git", "GitHub", "Figma"],
     testing: ["Vitest", "Playwright"],
     devOps: ["Docker", "Vercel", "Netlify"],
@@ -90,11 +90,11 @@ const sakibTamim = {
 
 ### AI & Developer Velocity
 
-![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75C2?style=for-the-badge&logo=google&logoColor=white)
+![Google Antigravity Agent](https://img.shields.io/badge/Google_Antigravity_Agent-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini-8E75C2?style=for-the-badge&logo=googlegemini&logoColor=white)
 ![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
 ![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 ![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=for-the-badge&logo=githubcopilot&logoColor=white)
-![Antigravity](https://img.shields.io/badge/Google_Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white)
 
 ### Styling & Design
 
