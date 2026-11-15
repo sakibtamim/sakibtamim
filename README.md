@@ -17,13 +17,12 @@
 
 ## 👨‍💻 About Me
 
-<img align="right" alt="Coding" width="400" src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
-
 ```javascript
 const sakibTamim = {
   role: "Software Engineer (Web)",
   company: "Purrfect Software Limited",
   location: "Dhaka, Bangladesh 🇧🇩",
+  portfolio: "https://sakibtamim.vercel.app",
   code: ["TypeScript", "JavaScript", "SQL", "HTML5", "CSS3"],
   technologies: {
     frontEnd: {
@@ -36,15 +35,22 @@ const sakibTamim = {
       databases: ["PostgreSQL"],
       orm: ["Prisma", "Drizzle"],
     },
-    tools: ["Turborepo", "pnpm", "Git", "GitHub", "Figma", "Antigravity"],
+    aiVelocity: ["Google Gemini", "Claude", "ChatGPT", "GitHub Copilot", "Antigravity"],
+    tools: ["Turborepo", "pnpm", "Git", "GitHub", "Figma"],
     testing: ["Vitest", "Playwright"],
     devOps: ["Docker", "Vercel", "Netlify"],
   },
   currentFocus: "Architecting high-performance enterprise web apps & healthcare SaaS",
-  askMeAbout: ["Next.js", "React", "TypeScript", "Full-Stack Web", "Monorepo"],
+  askMeAbout: ["Next.js", "React", "TypeScript", "Full-Stack Web", "Agentic SWE"],
   funFact: "I turn coffee ☕ into clean code 💻",
 };
 ```
+
+<br/>
+
+<div align="center">
+  <img alt="Coding" width="380" src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
+</div>
 
 <br/>
 
@@ -81,6 +87,14 @@ const sakibTamim = {
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
 ![Drizzle](https://img.shields.io/badge/Drizzle_ORM-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black)
+
+### AI & Developer Velocity
+
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75C2?style=for-the-badge&logo=google&logoColor=white)
+![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
+![ChatGPT](https://img.shields.io/badge/ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
+![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=for-the-badge&logo=githubcopilot&logoColor=white)
+![Antigravity](https://img.shields.io/badge/Google_Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white)
 
 ### Styling & Design
 
