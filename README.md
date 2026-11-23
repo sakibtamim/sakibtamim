@@ -20,7 +20,6 @@
 ```javascript
 const sakibTamim = {
   role: "Software Engineer (Web) | Frontend Developer",
-  company: "Purrfect Software Limited",
   location: "Dhaka, Bangladesh 🇧🇩",
   portfolio: "https://sakibtamim.vercel.app",
   code: ["TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "SQL"],
@@ -54,14 +53,6 @@ const sakibTamim = {
 </div>
 
 <br/>
-
-<div align="center">
-
-### 💼 Currently Working At
-
-[![Purrfect Software Limited](https://img.shields.io/badge/Purrfect_Software_Limited-Software_Engineer_(Web)-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/company/purrfect-soft-ltd/)
-
-</div>
 
 ---
 
